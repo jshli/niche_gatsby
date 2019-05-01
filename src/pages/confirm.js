@@ -7,17 +7,24 @@ const auth = new GoTrue({
     setCookie: false
 })
 
-if (window.location.hash && window.location.hash.indexOf('#confirmation_token') === 0) {
-    const token = window.location.hash.split("=")[1]
-    auth
-    .confirm(token)
-    .then(response => console.log("confirmed", response))
-    .catch(error => console.log("error", error))
-}
 
 
-export default function Confirm(props) {
-    return (
-        <div>confirm</div>
-    )
+
+
+export default class Confirm extends React.Component{
+    componentDidMount() {
+        if (window.location.hash && window.location.hash.indexOf('#confirmation_token') === 0) {
+            const token = window.location.hash.split("=")[1]
+            auth
+            .confirm(token)
+            .then(response => console.log("confirmed", response))
+            .catch(error => console.log("error", error))
+        }
+    }
+    render() {
+
+        return (
+            <div>confirm</div>
+        )
+    }
 }
