@@ -1,17 +1,25 @@
 import React from "react"
 import _ from "lodash"
+import GoTrue from "gotrue-js"
 // import { Mutation } from "react-apollo"
 // import ApolloClient from "apollo-boost";
 // import { ApolloProvider } from "react-apollo";
 
 import StyledForm from "../components/Form/Index"
+
 // import createUser from "./Mutations/createUser"
 
 // const client = new ApolloClient({
 //     uri: "/graphql"
 // });
 
-export default class CreateAccountForm extends React.Component {
+const auth = new GoTrue({
+    APIUrl: "https://niche.netlify.com/.netlify/identity",
+    audience: "",
+    setCookie: false
+})
+
+export default class Signup extends React.Component {
     state = {
         firstName: "",
         lastName: "",
@@ -27,6 +35,14 @@ export default class CreateAccountForm extends React.Component {
     //     this.setState({ firstName: '', lastName: '', email: '', phone: "", password: "" });
     // }
     
+    handleSubmit = e => {
+        e.preventDefault()
+        auth
+        .signup(this.state.email, this.state.password)
+        .then(response => console.log("Success, confirmation email sent", response))
+        .catch(error => console.log("Error", error))
+    }
+    
     handleChange = e => {
         if (e.target.name.split("_").length > 1) {
             this.setState({
@@ -38,8 +54,6 @@ export default class CreateAccountForm extends React.Component {
             })
         }
     }
-
-
 
     render () {
 
@@ -59,7 +73,7 @@ export default class CreateAccountForm extends React.Component {
                         <p>Let’s get you set-up with a free Niche account, so you can start joining tracks you’re interested, and get early access when the platform launches.</p>
                         <p>Already have an account? Sign in <a href="/login">here.</a></p>
                     <StyledForm 
-                    // onSubmit={() => this.handleSubmit(createUser)}
+                    onSubmit={this.handleSubmit}
                     >
                         <StyledForm.InputWrap>
                             <div>
