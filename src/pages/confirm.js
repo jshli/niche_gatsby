@@ -7,6 +7,8 @@ const auth = new GoTrue({
     setCookie: false
 })
 
+const token = window.location.hash.split("=")[1]
+
 auth
 .confirm(token)
 .then(response => console.log("confirmed", response))
@@ -14,6 +16,6 @@ auth
 
 export default function Confirm(props) {
     return (
-        <div>dashboard</div>
+        <div>confirm</div>
     )
 }
