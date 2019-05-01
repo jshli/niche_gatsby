@@ -7,12 +7,14 @@ const auth = new GoTrue({
     setCookie: false
 })
 
-const token = window.location.hash.split("=")[1]
+if (window.location.hash && window.location.hash.indexOf('#confirmation_token') === 0) {
+    const token = window.location.hash.split("=")[1]
+    auth
+    .confirm(token)
+    .then(response => console.log("confirmed", response))
+    .catch(error => console.log("error", error))
+}
 
-auth
-.confirm(token)
-.then(response => console.log("confirmed", response))
-.catch(error => console.log("error", error))
 
 export default function Confirm(props) {
     return (
