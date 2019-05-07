@@ -9,8 +9,6 @@ const auth = new GoTrue({
 
 
 
-
-
 export default class Confirm extends React.Component{
     componentDidMount() {
         if (window.location.hash && window.location.hash.indexOf('#confirmation_token') === 0) {
@@ -24,7 +22,7 @@ export default class Confirm extends React.Component{
     render() {
 
         return (
-            <div>confirm</div>
+        <div>confirm</div>
         )
     }
 }

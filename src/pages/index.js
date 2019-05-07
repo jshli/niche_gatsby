@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { confirmUser }  from "../utils/auth"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,8 +10,8 @@ import Button from "../components/Button"
 
 
 const IndexPage = ({data}) => (
-
   <Layout>
+    {confirmUser()}
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <section className="hero">
         <div className="container grid-of-2">
@@ -51,9 +52,9 @@ const IndexPage = ({data}) => (
             <h2>How Niche works</h2>
             <p>Learning through Niche allows you to master the skills you'll need to ace your VCE English, at your own pace.</p>
           </div>
-          <div className="container"> 
-          <div className="container">
-            <div className="img-clmn">
+          <div class="container"> 
+          <div class="container">
+            <div class="img-clmn">
               {/* <img class="how-it-works__img" src="<%=image_path("5c5699370464304a47b18244_how-step-2-aa9d08a7873f6137fb875bf1e72e4292eb549f76670498e569383103ae9799ef.png")%>" alt=""> */}
             </div>
             <div>
@@ -61,20 +62,20 @@ const IndexPage = ({data}) => (
               <p>Writing introductions. Essay structuring. Performing under exam conditions. From foundations to advanced techniques, pick from hours worth of courses to learn from!</p>
             </div>
           </div>
-          <div className="container--grid2 content-grid">
-            <div className="sign-in--clmn">
+          <div class="container--grid2 content-grid">
+            <div class="sign-in--clmn">
               <h3>2. Complete exercises, get real feedback</h3>
               <p>We know how important it is to get in-depth feedback. Complete exercises, and get real feedback from English experts that'll help you improve.</p>
             </div>
-            <div className="img-clmn">
-              {/* <img className="how-it-works__img" src= "<%=image_path("5c569a0d4ed7967936f0740f_how-step-3-cdf396c1da68deb92f387de5d5e22001820630a09edabb819ad918d8768d912a.png")%>" alt=""> */}
+            <div class="img-clmn">
+              {/* <img class="how-it-works__img" src= "<%=image_path("5c569a0d4ed7967936f0740f_how-step-3-cdf396c1da68deb92f387de5d5e22001820630a09edabb819ad918d8768d912a.png")%>" alt=""> */}
             </div>
           </div>
-          <div className="container--grid2 content-grid">
-            <div className="img-clmn">
-              {/* <img className="how-it-works__img" src="<%=image_path("5c569ad84ed7967443f0742e_how-step-5-615a85bcf66919966c5bf088c09d6c482f4e421122958f755bab87fea49e9c8b.png")%>" alt=""> */}
+          <div class="container--grid2 content-grid">
+            <div class="img-clmn">
+              {/* <img class="how-it-works__img" src="<%=image_path("5c569ad84ed7967443f0742e_how-step-5-615a85bcf66919966c5bf088c09d6c482f4e421122958f755bab87fea49e9c8b.png")%>" alt=""> */}
             </div>
-            <div className="sign-in--clmn">
+            <div class="sign-in--clmn">
               <h3>3. Complete courses and become a more confident English student!</h3>
               <p>With each course you complete and each skill you master, see yourself improve, and become a more confident and competent student.</p>
             </div>
@@ -95,9 +96,7 @@ const IndexPage = ({data}) => (
             <Button primary={"true"} to="#">Sign Up Now</Button>
           </div>
         </section>
-        <footer>
-
-        </footer>
+        
   </Layout>
 )
 

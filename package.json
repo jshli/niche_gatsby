@@ -9,6 +9,7 @@
     "dotenv": "^7.0.0",
     "gatsby": "^2.3.34",
     "gatsby-image": "^2.0.41",
+    "gatsby-plugin-create-client-paths": "^2.0.5",
     "gatsby-plugin-lodash": "^3.0.5",
     "gatsby-plugin-manifest": "^2.0.29",
     "gatsby-plugin-offline": "^2.0.25",

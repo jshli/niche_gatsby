@@ -85,7 +85,6 @@ export default function Modal(props) {
         graphql`
         query {
             allContentfulLessons {
-                
                 nodes {
                     orderNum
                     description{

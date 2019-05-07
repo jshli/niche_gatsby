@@ -1,7 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
+import Button from "../../components/Button"
 import Card from "./Card"
+
 
 const Tracks = styled.div`
     display: grid;
@@ -14,7 +16,8 @@ const Tracks = styled.div`
 export default function TracksList(props) {
     return (
     <Tracks>
-        {props.tracks.nodes.map((track) => {
+        {props.tracks ? 
+        props.tracks.nodes.map((track) => {
             return (
                 <Card 
                 id={track.id}
@@ -25,7 +28,13 @@ export default function TracksList(props) {
                 dateAvailable={track.dateAvailable}
                 />
             )
-        })}
+        })   
+        :
+        <div>
+            <p>Hmm no tracks here. Would you like to pick some?</p>
+            <Button>See all tracks</Button>
+        </div>
+    }
     </Tracks>
     )
 }

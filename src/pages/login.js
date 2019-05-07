@@ -1,15 +1,10 @@
 import React from "react"
-import GoTrue from "gotrue-js"
 import { navigate } from "gatsby"
+import { login } from "../utils/auth"
 
+import Layout from "../components/layout"
 import StyledForm from "../components/Form/Index"
 
-
-const auth = new GoTrue({
-    APIUrl: "https://niche.netlify.com/.netlify/identity",
-    audience: "",
-    setCookie: false
-})
 
 export default class Login extends React.Component {
     state={
@@ -21,10 +16,7 @@ export default class Login extends React.Component {
     
 handleSubmit = e => {
     e.preventDefault()
-    auth.login(this.state.email, this.state.password)
-    .then(response => console.log(response, "Success, logged in"))
-    .then(navigate("/dashboard"))
-    .catch(error => console.log("Error", error))
+    login(this.state.email, this.state.password)
 }
 
 handleChange = e => {
@@ -35,25 +27,27 @@ handleChange = e => {
 
 render () {
     return (
-        <section className="section--full">
-            <div className="container grid-of-2">
-                <div className="sign-in--clmn">
-                    
+        <Layout>
+            <section className="section--full">
+                <div className="container grid-of-2">
+                    <div className="sign-in--clmn">
+                        
+                    </div>
+                    <div className="sign-in--clmn">
+                        <h2>Oh hey there. Welcome back!</h2>
+                        <p>Ready to dive back in? Let's get you signed back in.</p>
+                        <p>Don't have an account yet? Sign up <a href="/create-account">here.</a></p>
+                        <StyledForm onSubmit={this.handleSubmit}>
+                            <StyledForm.Label>Email Address</StyledForm.Label>
+                            <StyledForm.Input  type="email" name="email" onChange={this.handleChange} required/>
+                            <StyledForm.Label>Password</StyledForm.Label>
+                            <StyledForm.Input type="password" name="password" onChange={this.handleChange} required/>  
+                            <StyledForm.Btn>Create Account</StyledForm.Btn>
+                        </StyledForm>
+                    </div>
                 </div>
-                <div className="sign-in--clmn">
-                    <h2>Oh hey there. Welcome back!</h2>
-                    <p>Ready to dive back in? Let's get you signed back in.</p>
-                    <p>Don't have an account yet? Sign up <a href="/create-account">here.</a></p>
-                    <StyledForm onSubmit={this.handleSubmit}>
-                        <StyledForm.Label>Email Address</StyledForm.Label>
-                        <StyledForm.Input  type="email" name="email" onChange={this.handleChange} required/>
-                        <StyledForm.Label>Password</StyledForm.Label>
-                        <StyledForm.Input type="password" name="password" onChange={this.handleChange} required/>  
-                        <StyledForm.Btn>Create Account</StyledForm.Btn>
-                    </StyledForm>
-                </div>
-            </div>
-        </section>
+            </section>
+        </Layout>
         )
     }
 }
